@@ -16,7 +16,6 @@ from .model import Edgar
 
 
 
-
 class Model:
     MODEL_PATH = 'Pretrained.pth'
     OUTPUT = namedtuple('Output', ['pred', 'uncert', 'div', 'embedding'])
