@@ -1,5 +1,4 @@
 from collections import namedtuple
-import pickle
 import torch
 import torch.nn as nn
 import numpy as np

@@ -119,12 +119,5 @@ class Model:
         model.eval()
         self.model = model
 
-        data_mean = state.get('data_mean')
-        data_std = state.get('data_std')
-        
-        if (data_mean is not None) and (data_std is not None):
-            self.data_mean = data_mean
-            self.data_std = data_std
-        else:
-            self.data_mean = 0
-            self.data_std = 1
+        self.data_mean = state['data_mean']
+        self.data_std = state['data_std']
