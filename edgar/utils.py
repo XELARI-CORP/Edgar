@@ -1,4 +1,5 @@
 from collections import defaultdict
+from .exceptions import InvalidStructure
 
 
 
@@ -42,11 +43,11 @@ def get_na_pairs(struct):
             op_idx = stack[s]
 
             if op_idx is None:
-                raise ValueError("Structure has a pair without an opening bracket")
+                raise InvalidStructure("Structure has a pair without opening bracket")
                     
             pairs.append((op_idx, i))
 
     if not stack.isempty():
-        raise ValueError("Structure has a pair without a closing bracket")
+        raise InvalidStructure("Structure has a pair without closing bracket")
         
     return pairs

@@ -12,6 +12,7 @@ import torch
 import numpy as np
 
 from .utils import NA_Dict, get_na_pairs
+from .exceptions import InvalidSequence, InvalidStructure
 from .model import Edgar
 
 
@@ -45,17 +46,21 @@ class Model:
                     ):
         
         if not seq:
-            raise ValueError("Empty sequence")
+            raise InvalidSequence("Empty sequence")
+            
+        rn = set(seq) - {'A', 'U', 'G', 'C', 'T'}
+        if len(rn)!=0:
+            raise InvalidSequence(f'Sequence contains unknown symbols: {tuple(rn)}')
             
         if len(seq)!=len(struct):
-            raise ValueError("Sequence and structure must have the same length")
+            raise InvalidSequence("Sequence and structure must be the same length")
             
         if struct.count('(')==0:
-            raise ValueError("Structure has no complementary bonds")
+            raise InvalidStructure("Structure has no complementary bonds")
         
         if na_type is None:
             if (('U' in seq) and ('T' in seq)) or (('U' not in seq) and ('T' not in seq)):
-                raise ValueError("It is not obvious whether the sequence is RNA or DNA, specify na_type argument ['rna', 'dna'].")
+                raise InvalidSequence("It is not obvious whether the sequence is RNA or DNA")
             
             na_type = 'rna' if 'U' in seq else 'dna'
             
