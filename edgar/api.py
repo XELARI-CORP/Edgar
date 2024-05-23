@@ -55,6 +55,10 @@ class Model:
         if len(seq)!=len(struct):
             raise InvalidSequence("Sequence and structure must be the same length")
             
+        rn = set(struct) - set(".()[]{}<>")
+        if len(rn)!=0:
+            raise InvalidStructure(f'Structure contains unknown symbols: {tuple(rn)}')
+            
         if struct.count('(')==0:
             raise InvalidStructure("Structure has no complementary bonds")
         
