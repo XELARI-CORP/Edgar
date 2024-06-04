@@ -53,7 +53,7 @@ class Model:
             raise InvalidSequence(f'Sequence contains unknown symbols: {tuple(rn)}')
             
         if len(seq)!=len(struct):
-            raise InvalidSequence("Sequence and structure must be the same length")
+            raise InvalidStructure("Sequence and structure must be the same length")
             
         rn = set(struct) - set(".()[]{}<>")
         if len(rn)!=0:
