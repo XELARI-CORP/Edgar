@@ -9,7 +9,7 @@ Edgar is a deep learning based method for RNA and DNA folding energy prediction.
 
 - Clone repository or download the archive:
 	```
-	git clone https://github.com/NANOBIOROBOTS-INC/Edgar.git
+	git clone https://github.com/XELARI-CORP/Edgar.git
 	cd Edgar
 	```
     
